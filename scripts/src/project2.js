@@ -6,17 +6,18 @@ Feb 20, 2012
 */
 
 function main() {
-	//1. Create a spotter and get it to insert tweets into the DOM
-	//2. Add profile images
-	//3. Make the tweets occur so the most recent are at the top
-		//look at jQuery documentation for this
-	//4. Make the tweets slide down used slideDown
-	//5. Alternate colors
-	//6. show 10 posts, remove old from DOM
+	
+	$("#search_button").click(function() {
+		alert($("#term").val());
+    	});
+    
 	var count = 0;  //used for alternating colors
+	var love_count = 0;
+	
 	var paragraphs = [];  //declare new array alt var object_array = new Array();
+	var search_term = "karl hess"
 	var s = new Spotter("twitter.search",
-		{q:"bieber", period:120}, //check for bieber every 120 seconds
+		{q:search_term, period:120}, //check for bieber every 120 seconds
 		{buffer:true, bufferTimeout:750}
 		);
 	//function will get one new tweet	
@@ -29,6 +30,11 @@ function main() {
 			} else {
 				color = "dkGray";
 			}
+			
+		if(tweet.text.match(/\slove\s/)) {
+	    love_count++;
+		}
+			
 		var new_paragraph = $("<p class ='"+color+"'>"+profile_image+tweet.text+"</p>");  //single quote stays within doubles bc class needs quotes
 		if (paragraphs.length >= 10) {  //if count is 10 or larger remove element from array
 			var p = paragraphs.shift(); //fifo first in first out
@@ -60,5 +66,6 @@ function main() {
 
 	s.start();
 }
-
-main();
+$(document).ready(function() {
+    main();
+});
