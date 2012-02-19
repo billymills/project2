@@ -50,7 +50,7 @@ function main(test_term) {
 		}
 			
 		var new_paragraph = $("<p class ='"+color+"'>"+profile_image+tweet.text+"</p>");  //single quote stays within doubles bc class needs quotes
-		if (paragraphs.length >= 10) {  //if count is 10 or larger remove element from array
+		if (paragraphs.length >= 5) {  //if count is 10 or larger remove element from array
 			var p = paragraphs.shift(); //fifo first in first out
 			p.fadeOut(1000, function() { // callback function applies funtion to last item
 				p.remove();	

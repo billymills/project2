@@ -5,6 +5,20 @@ project2.css
 Feb 20 2012
 */
 
+
+html {
+height: 100%;
+}
+
 body {
+background-color: #e6e6e6;
+height: 100%;
+}
+
+.container {
 background-color: white;
+}
+
+#main {
+min-height:100%;
 }
