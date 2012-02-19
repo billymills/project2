@@ -10,7 +10,7 @@ Feb 20, 2012
 function getSearchTerm () {
 
 $("#search_button").click(function() {
-		alert($("#term").val());
+		
 		main($("#term").val());
 	});
 // var test_term = $("#term").val();
@@ -20,6 +20,9 @@ $("#search_button").click(function() {
 
 
 function main(test_term) {
+
+	var p_to_remove = document.getElementById("temp_par");
+	var remove = document.getElementById("tweets").removeChild(p_to_remove);
 	
 	//$("#search_button").click(function() {
 	//	alert($("#term").val());
