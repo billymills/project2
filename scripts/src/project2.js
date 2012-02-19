@@ -38,7 +38,7 @@ function main(test_term) {
 	s.register(function(tweet) {
 		count = count+1;  //increment count
 		var color;  //variable to alternate color
-		var profile_image = "<img src='"+tweet.profile_image_url+"' />"; //profile image into var
+		var profile_image = "<img class='pic_class' src='"+tweet.profile_image_url+"' />"; //profile image into var
 		if(count%2 === 0) {  //alternate colors based on count
 				color= "gray";  //alt "'gray'" then single quotes not necessary below
 			} else {
