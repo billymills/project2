@@ -5,19 +5,33 @@ project2.js
 Feb 20, 2012
 */
 
-function main() {
-	
-	$("#search_button").click(function() {
+
+
+function getSearchTerm () {
+
+$("#search_button").click(function() {
 		alert($("#term").val());
-    	});
-    
+		main($("#term").val());
+	});
+// var test_term = $("#term").val();
+
+//main(test_term);
+}
+
+
+function main(test_term) {
+	
+	//$("#search_button").click(function() {
+	//	alert($("#term").val());
+//	});
+//var test_term = $("#term").val();
 	var count = 0;  //used for alternating colors
 	var love_count = 0;
 	
 	var paragraphs = [];  //declare new array alt var object_array = new Array();
-	var search_term = "karl hess"
+	var search_term = test_term;
 	var s = new Spotter("twitter.search",
-		{q:search_term, period:120}, //check for bieber every 120 seconds
+		{q:test_term, period:120}, //check for bieber every 120 seconds
 		{buffer:true, bufferTimeout:750}
 		);
 	//function will get one new tweet	
@@ -67,5 +81,5 @@ function main() {
 	s.start();
 }
 $(document).ready(function() {
-    main();
+getSearchTerm();
 });
