@@ -10,13 +10,11 @@ Feb 20, 2012
 function getSearchTerm () {
 	$("#search_button").click(function() {
 		main($("#term").val());
-
 	}); //end click function
 }
 
 
 function main(test_term) {
-
 	var p_to_remove = document.getElementById("temp_par");
 	var remove = document.getElementById("tweets").removeChild(p_to_remove);
 	
@@ -41,15 +39,15 @@ function main(test_term) {
 				color = "dkGray";
 			} //end else
 			
-		if(tweet.text.match(/\sjustin\s/)) {
+		if(tweet.text.match(/(^|\s)karl($|\s)/i)) {
 	    love_count++;
 	    $("#love_div").replaceWith("<div id='love_div'>"+love_count+"</div>");
 		} //end if
 		
-		if(tweet.text.match(/\shate\s/)) {
+		if(tweet.text.match(/(^|\s)hess($|\s)/i)) {
 		hate_count++;
+		$("#hate_div").replaceWith("<div id='hate_div'>"+hate_count+"</div>");
 		} //end if
-		
 			
 		var new_paragraph = $("<p class ='"+color+"'>"+profile_image+tweet.text+"</p>");  //single quote stays within doubles bc class needs quotes
 		if (paragraphs.length >= 5) {  //if count is 10 or larger remove element from array
@@ -66,7 +64,6 @@ function main(test_term) {
 	}); //end register
 	
 	s.start();
-	
 	
 } //end main
 
