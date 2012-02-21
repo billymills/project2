@@ -15,6 +15,13 @@ function getSearchTerm () {
 
 
 function main(test_term) {
+
+	var new_div = $("<div id='results'><div id = 'love_div'>love</div><br><div id = 'hate_div'>hate</div></div>");
+	new_div.hide();
+	$("#main").append(new_div);
+	new_div.fadeIn(1400);
+	
+	
 	var p_to_remove = document.getElementById("temp_par");
 	var remove = document.getElementById("tweets").removeChild(p_to_remove);
 	
@@ -70,3 +77,6 @@ function main(test_term) {
 $(document).ready(function() {
 	getSearchTerm();
 });
+
+
+//var new_div = "<div id="results"><div id = "love_div">love</div><br><div id = "hate_div">hate</div></div>";
