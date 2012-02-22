@@ -16,11 +16,8 @@ function getSearchTerm () {
 
 function main(test_term) {
 
-resultsBox();
+	resultsBox();  //call function to fadeIn results and new search button
 
-	//experimenting here
-	
-	
 	var p_to_remove = document.getElementById("temp_par");
 	var remove = document.getElementById("tweets").removeChild(p_to_remove);
 	
@@ -74,18 +71,28 @@ resultsBox();
 } //end main
 
 function resultsBox (){
+
+	//$("#search_box").replaceWith($("<div id='search_box'><div id = 'love_div'>love</div><br><div id = 'hate_div'>hate</div></div>"));
+	var new_contents = $("<div id='search_contents'><div id = 'love_div'>love</div><br><div id = 'hate_div'>hate</div></div>") ;
+	new_contents.hide();
+	$("#search_contents").fadeOut(600, function() {
+    	$("#search_contents").replaceWith(new_contents);
+    	$(new_contents).fadeIn(600);
+	});
+
+
 	//hide the results box then have it fade in
-	var new_div = $("<div id='results'><div id = 'love_div'>love</div><br><div id = 'hate_div'>hate</div></div>");
-	new_div.hide();
-	$("#main").append(new_div);
-	new_div.fadeIn(1400);
+	//var new_div = $("<div id='results'><div id = 'love_div'>love</div><br><div id = 'hate_div'>hate</div></div>");
+	//new_div.hide();
+	//$("#main").append(new_div);
+	//new_div.fadeIn(1400);
 	
 	//hide the refresh button will appear once search is run
 	var refresh = $("<button class='btn' value='Reload Page' onClick='window.location.reload()'>New Search</button>");
 	refresh.hide();
 	$("#refresh_button").append(refresh);
-	refresh.fadeIn(1400);
-	}
+	refresh.fadeIn(600);
+}
 
 $(document).ready(function() {
 	getSearchTerm();

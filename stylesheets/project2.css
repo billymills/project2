@@ -24,8 +24,12 @@ body {
 	min-height:100%;
 }
 
+
+
+
 #search_box {
 	font-family: 'Orbitron', sans serif;
+	color:white;
 	padding-top:30px;
 	padding-left:35px;
 	margin-top:50px;
