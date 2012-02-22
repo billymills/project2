@@ -17,20 +17,22 @@ function getSearchTerm () {
 function main(test_term) {
 
 	resultsBox();  //call function to fadeIn results and new search button
-
-	var p_to_remove = document.getElementById("temp_par");
-	var remove = document.getElementById("tweets").removeChild(p_to_remove);
+	
+	var el = document.getElementById("tweets");
+		while( el.hasChildNodes() ){
+    	el.removeChild(el.lastChild);
+	}
 	
 	var count = 0;  //used for alternating colors
 	var love_count = 0;
 	var hate_count = 0;
-	
 	var paragraphs = [];  //declare new array alt var object_array = new Array();
 	var search_term = test_term;
 	var s = new Spotter("twitter.search",
-		{q:test_term, period:120}, //check for bieber every 120 seconds
-		{buffer:true, bufferTimeout:750}
+			{q:test_term, period:120}, //check for bieber every 120 seconds
+			{buffer:true, bufferTimeout:750}
 		);
+		
 	//function will get one new tweet	
 	s.register(function(tweet) {
 		count = count+1;  //increment count
@@ -42,14 +44,14 @@ function main(test_term) {
 				color = "dkGray";
 			} //end else
 			
-		if(tweet.text.match(/(^|\s)karl($|\s)/i)) {
-	    love_count++;
-	    $("#love_div").replaceWith("<div id='love_div'>"+love_count+"</div>");
+		if(tweet.text.match(/(^|\s)love($|\s)/i)) {
+	    	love_count++;
+	    	$("#love_div").replaceWith("<div id='love_div'># of loves:  "+love_count+"</div>");
 		} //end if
 		
-		if(tweet.text.match(/(^|\s)hess($|\s)/i)) {
-		hate_count++;
-		$("#hate_div").replaceWith("<div id='hate_div'>"+hate_count+"</div>");
+		if(tweet.text.match(/(^|\s)hate($|\s)/i)) {
+			hate_count++;
+			$("#hate_div").replaceWith("<div id='hate_div'># of hates:  "+hate_count+"</div>");
 		} //end if
 			
 		var new_paragraph = $("<p class ='"+color+"'>"+profile_image+tweet.text+"</p>");  //single quote stays within doubles bc class needs quotes
@@ -73,11 +75,11 @@ function main(test_term) {
 function resultsBox (){
 
 	//$("#search_box").replaceWith($("<div id='search_box'><div id = 'love_div'>love</div><br><div id = 'hate_div'>hate</div></div>"));
-	var new_contents = $("<div id='search_contents'><div id = 'love_div'>love</div><br><div id = 'hate_div'>hate</div><button class='btn' value='Reload Page' onClick='window.location.reload()'>New Search</button></div>") ;
+	var new_contents = $("<div id='search_contents'><div id = 'love_div'>no love so far</div><br><div id = 'hate_div'>no haters yet</div><br><button class='btn' value='Reload Page' onClick='window.location.reload()'>New Search</button></div>") ;
 	new_contents.hide();
-	$("#search_contents").fadeOut(600, function() {
+	$("#search_contents").fadeOut(1000, function() {
     	$("#search_contents").replaceWith(new_contents);
-    	$(new_contents).fadeIn(600);
+    	$(new_contents).fadeIn(1000);
 	});
 
 
@@ -98,9 +100,3 @@ $(document).ready(function() {
 	getSearchTerm();
 });
 
-
-//now i want to do a search again
-
-//<input type="button" value="Reload Page" onClick="window.location.reload()">
-
-//on click result go in search box div and new search appears original contents go away

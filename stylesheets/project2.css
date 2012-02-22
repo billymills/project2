@@ -24,8 +24,10 @@ body {
 	min-height:100%;
 }
 
-
-
+#temp_header {
+	font-family: 'Orbitron', sans serif;
+	font-weight: 600;
+}
 
 #search_box {
 	font-family: 'Orbitron', sans serif;
@@ -50,7 +52,8 @@ body {
 	width:700px;
 	height:250px;
 	font-size: 50%;
-	padding: 15px;
+	padding-top: 15px;
+	padding-left: 30px;
 	background-color: white;
 	margin-top:25px;
 	-webkit-border-radius: 15px 15px 15px 15px;
