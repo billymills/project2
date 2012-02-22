@@ -73,7 +73,7 @@ function main(test_term) {
 function resultsBox (){
 
 	//$("#search_box").replaceWith($("<div id='search_box'><div id = 'love_div'>love</div><br><div id = 'hate_div'>hate</div></div>"));
-	var new_contents = $("<div id='search_contents'><div id = 'love_div'>love</div><br><div id = 'hate_div'>hate</div></div>") ;
+	var new_contents = $("<div id='search_contents'><div id = 'love_div'>love</div><br><div id = 'hate_div'>hate</div><button class='btn' value='Reload Page' onClick='window.location.reload()'>New Search</button></div>") ;
 	new_contents.hide();
 	$("#search_contents").fadeOut(600, function() {
     	$("#search_contents").replaceWith(new_contents);
@@ -88,10 +88,10 @@ function resultsBox (){
 	//new_div.fadeIn(1400);
 	
 	//hide the refresh button will appear once search is run
-	var refresh = $("<button class='btn' value='Reload Page' onClick='window.location.reload()'>New Search</button>");
-	refresh.hide();
-	$("#refresh_button").append(refresh);
-	refresh.fadeIn(600);
+	//var refresh = $("<button class='btn' value='Reload Page' onClick='window.location.reload()'>New Search</button>");
+	//refresh.hide();
+	//$("#refresh_button").append(refresh);
+	//refresh.fadeIn(600);
 }
 
 $(document).ready(function() {
