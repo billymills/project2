@@ -8,9 +8,19 @@ Feb 20, 2012
 
 
 function getSearchTerm () {
+
+	//run main on click
 	$("#search_button").click(function() {
 		main($("#term").val());
 	}); //end click function
+	
+	//run main if 'enter' is pressed
+	$("#term").keypress(function(e) {
+    	if(e.keyCode == 13) {
+        	//alert('You pressed enter!');
+        	main($("#term").val());
+   		 } //end if
+	}); //end function
 }
 
 
