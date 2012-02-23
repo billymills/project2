@@ -21,16 +21,22 @@ function getSearchTerm () {
         	main($("#term").val());
    		 } //end if
 	}); //end function
+	
+	
 }
 
 
-function main(test_term) {
 
+
+
+function main(test_term) {
+	
+	changeHeader();
 	resultsBox();  //call function to fadeIn results and new search button
 	
-	var el = document.getElementById("tweets");
-		while( el.hasChildNodes() ){
-    	el.removeChild(el.lastChild);
+	var tweet_div = document.getElementById("tweets");
+	while( tweet_div.hasChildNodes() ){
+    	tweet_div.removeChild(tweet_div.lastChild);
 	}
 	
 	var count = 0;  //used for alternating colors
@@ -40,7 +46,7 @@ function main(test_term) {
 	var search_term = test_term;
 	var s = new Spotter("twitter.search",
 			{q:test_term, period:120}, //check for bieber every 120 seconds
-			{buffer:true, bufferTimeout:750}
+			{buffer:true, bufferTimeout:1000}
 		);
 		
 	//function will get one new tweet	
@@ -65,7 +71,7 @@ function main(test_term) {
 		} //end if
 			
 		var new_paragraph = $("<p class ='"+color+"'>"+profile_image+tweet.text+"</p>");  //single quote stays within doubles bc class needs quotes
-		if (paragraphs.length >= 5) {  //if count is 10 or larger remove element from array
+		if (paragraphs.length >= 4) {  //if count is 10 or larger remove element from array
 			var p = paragraphs.shift(); //fifo first in first out
 			p.fadeOut(1000, function() { // callback function applies funtion to last item
 				p.remove();	
@@ -90,23 +96,18 @@ function resultsBox (){
 	$("#search_contents").fadeOut(1000, function() {
     	$("#search_contents").replaceWith(new_contents);
     	$(new_contents).fadeIn(1000);
-	});
+	});	
+}
 
-
-	//hide the results box then have it fade in
-	//var new_div = $("<div id='results'><div id = 'love_div'>love</div><br><div id = 'hate_div'>hate</div></div>");
-	//new_div.hide();
-	//$("#main").append(new_div);
-	//new_div.fadeIn(1400);
-	
-	//hide the refresh button will appear once search is run
-	//var refresh = $("<button class='btn' value='Reload Page' onClick='window.location.reload()'>New Search</button>");
-	//refresh.hide();
-	//$("#refresh_button").append(refresh);
-	//refresh.fadeIn(600);
+function changeHeader() {
+	var new_contents = $("<div id='tweet_header'><h4>some recent tweets</h4></div>");
+	new_contents.hide();
+	$("#tweet_header").replaceWith(new_contents);
+	$(new_contents).fadeIn(1000);
 }
 
 $(document).ready(function() {
 	getSearchTerm();
+	
 });
 
