@@ -5,10 +5,8 @@ project2.js
 Feb 20, 2012
 */
 
-
-
+//function initiated on page load, waits for click or enter
 function getSearchTerm () {
-
 	//run main on click
 	$("#search_button").click(function() {
 		main($("#term").val());
@@ -20,20 +18,14 @@ function getSearchTerm () {
         	//alert('You pressed enter!');
         	main($("#term").val());
    		 } //end if
-	}); //end function
-	
-	
-}
+	}); //end function	
+} //end getSearchTerm
 
-
-
-
-
+//function called from getSearchTerm
 function main(test_term) {
-	
-	changeHeader();
+	changeHeader(); //call function to insert header in tweet box
 	resultsBox();  //call function to fadeIn results and new search button
-	
+		//following lines will remove contents of tweet box on click
 	var tweet_div = document.getElementById("tweets");
 	while( tweet_div.hasChildNodes() ){
     	tweet_div.removeChild(tweet_div.lastChild);
@@ -88,8 +80,8 @@ function main(test_term) {
 	
 } //end main
 
+//function will change interior of search box to keep counts
 function resultsBox (){
-
 	//$("#search_box").replaceWith($("<div id='search_box'><div id = 'love_div'>love</div><br><div id = 'hate_div'>hate</div></div>"));
 	var new_contents = $("<div id='search_contents'><div id = 'love_div'>no love so far</div><br><div id = 'hate_div'>no haters yet</div><br><button class='btn' value='Reload Page' onClick='window.location.reload()'>New Search</button></div>") ;
 	new_contents.hide();
@@ -99,15 +91,16 @@ function resultsBox (){
 	});	
 }
 
+//function to change header in tweet box
 function changeHeader() {
-	var new_contents = $("<div id='tweet_header'><h4>some recent tweets</h4></div>");
+	var new_contents = $("<div id='tweet_header'><h4>some recent tweets...</h4></div>");
 	new_contents.hide();
 	$("#tweet_header").replaceWith(new_contents);
 	$(new_contents).fadeIn(1000);
 }
 
+//ready function
 $(document).ready(function() {
-	getSearchTerm();
-	
+	getSearchTerm();	
 });
 
